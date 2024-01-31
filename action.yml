@@ -6,15 +6,6 @@ branding:
   color: blue
   icon: code
 
-inputs:
-  github-token:
-    description: The GitHub token used to create an authenticated client
-    default: ${{ github.token }}
-    required: false
-  base-url:
-    description: An optional GitHub REST API URL to connect to a different GitHub instance. For example, https://my.github-enterprise-server.com/api/v3
-    required: false
-
 runs:
   using: node20
   main: dist/index.mjs
