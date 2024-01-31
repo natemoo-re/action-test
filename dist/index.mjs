@@ -25,9 +25,12 @@ import require$$1$3 from 'url';
 import require$$3$1 from 'zlib';
 import require$$6 from 'string_decoder';
 import require$$0$9 from 'diagnostics_channel';
-import resolve from 'resolve-package-path';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
 
 function getAugmentedNamespace(n) {
   if (n.__esModule) return n;
@@ -816,7 +819,7 @@ Object.defineProperty(fileCommand, "__esModule", { value: true });
 fileCommand.prepareKeyValueMessage = fileCommand.issueFileCommand = void 0;
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const fs = __importStar$1(require$$0$1);
+const fs$1 = __importStar$1(require$$0$1);
 const os = __importStar$1(require$$0);
 const uuid_1 = require$$2;
 const utils_1 = utils$1;
@@ -825,10 +828,10 @@ function issueFileCommand(command, message) {
     if (!filePath) {
         throw new Error(`Unable to find environment variable for file command ${command}`);
     }
-    if (!fs.existsSync(filePath)) {
+    if (!fs$1.existsSync(filePath)) {
         throw new Error(`Missing file at path: ${filePath}`);
     }
-    fs.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
+    fs$1.appendFileSync(filePath, `${utils_1.toCommandValue(message)}${os.EOL}`, {
         encoding: 'utf8'
     });
 }
@@ -851,7 +854,7 @@ fileCommand.prepareKeyValueMessage = prepareKeyValueMessage;
 
 var oidcUtils = {};
 
-var lib = {};
+var lib$1 = {};
 
 var proxy = {};
 
@@ -20343,11 +20346,11 @@ function requireUtil$2 () {
 	return util$3;
 }
 
-var cache;
+var cache$1;
 var hasRequiredCache;
 
 function requireCache () {
-	if (hasRequiredCache) return cache;
+	if (hasRequiredCache) return cache$1;
 	hasRequiredCache = 1;
 
 	const { kConstruct } = requireSymbols$1();
@@ -21183,10 +21186,10 @@ function requireCache () {
 	  webidl.converters.RequestInfo
 	);
 
-	cache = {
+	cache$1 = {
 	  Cache
 	};
-	return cache;
+	return cache$1;
 }
 
 var cachestorage;
@@ -24352,8 +24355,8 @@ var __awaiter$1 = (commonjsGlobal && commonjsGlobal.__awaiter) || function (this
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(lib, "__esModule", { value: true });
-lib.HttpClient = lib.isHttps = lib.HttpClientResponse = lib.HttpClientError = lib.getProxyUrl = lib.MediaTypes = lib.Headers = lib.HttpCodes = void 0;
+Object.defineProperty(lib$1, "__esModule", { value: true });
+lib$1.HttpClient = lib$1.isHttps = lib$1.HttpClientResponse = lib$1.HttpClientError = lib$1.getProxyUrl = lib$1.MediaTypes = lib$1.Headers = lib$1.HttpCodes = void 0;
 const http = __importStar(require$$2$1);
 const https = __importStar(require$$3);
 const pm = __importStar(proxy);
@@ -24388,16 +24391,16 @@ var HttpCodes;
     HttpCodes[HttpCodes["BadGateway"] = 502] = "BadGateway";
     HttpCodes[HttpCodes["ServiceUnavailable"] = 503] = "ServiceUnavailable";
     HttpCodes[HttpCodes["GatewayTimeout"] = 504] = "GatewayTimeout";
-})(HttpCodes || (lib.HttpCodes = HttpCodes = {}));
+})(HttpCodes || (lib$1.HttpCodes = HttpCodes = {}));
 var Headers;
 (function (Headers) {
     Headers["Accept"] = "accept";
     Headers["ContentType"] = "content-type";
-})(Headers || (lib.Headers = Headers = {}));
+})(Headers || (lib$1.Headers = Headers = {}));
 var MediaTypes;
 (function (MediaTypes) {
     MediaTypes["ApplicationJson"] = "application/json";
-})(MediaTypes || (lib.MediaTypes = MediaTypes = {}));
+})(MediaTypes || (lib$1.MediaTypes = MediaTypes = {}));
 /**
  * Returns the proxy URL, depending upon the supplied url and proxy environment variables.
  * @param serverUrl  The server URL where the request will be sent. For example, https://api.github.com
@@ -24406,7 +24409,7 @@ function getProxyUrl(serverUrl) {
     const proxyUrl = pm.getProxyUrl(new URL(serverUrl));
     return proxyUrl ? proxyUrl.href : '';
 }
-lib.getProxyUrl = getProxyUrl;
+lib$1.getProxyUrl = getProxyUrl;
 const HttpRedirectCodes = [
     HttpCodes.MovedPermanently,
     HttpCodes.ResourceMoved,
@@ -24430,7 +24433,7 @@ class HttpClientError extends Error {
         Object.setPrototypeOf(this, HttpClientError.prototype);
     }
 }
-lib.HttpClientError = HttpClientError;
+lib$1.HttpClientError = HttpClientError;
 class HttpClientResponse {
     constructor(message) {
         this.message = message;
@@ -24462,12 +24465,12 @@ class HttpClientResponse {
         });
     }
 }
-lib.HttpClientResponse = HttpClientResponse;
+lib$1.HttpClientResponse = HttpClientResponse;
 function isHttps(requestUrl) {
     const parsedUrl = new URL(requestUrl);
     return parsedUrl.protocol === 'https:';
 }
-lib.isHttps = isHttps;
+lib$1.isHttps = isHttps;
 class HttpClient {
     constructor(userAgent, handlers, requestOptions) {
         this._ignoreSslError = false;
@@ -24971,7 +24974,7 @@ class HttpClient {
         });
     }
 }
-lib.HttpClient = HttpClient;
+lib$1.HttpClient = HttpClient;
 const lowercaseKeys = (obj) => Object.keys(obj).reduce((c, k) => ((c[k.toLowerCase()] = obj[k]), c), {});
 
 var auth = {};
@@ -25072,7 +25075,7 @@ function requireOidcUtils () {
 	};
 	Object.defineProperty(oidcUtils, "__esModule", { value: true });
 	oidcUtils.OidcClient = void 0;
-	const http_client_1 = lib;
+	const http_client_1 = lib$1;
 	const auth_1 = auth;
 	const core_1 = requireCore();
 	class OidcClient {
@@ -25847,6 +25850,483 @@ function requireCore () {
 }
 
 var coreExports = requireCore();
+
+/*!
+ * path-root-regex <https://github.com/jonschlinkert/path-root-regex>
+ *
+ * Copyright (c) 2016, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+var pathRootRegex$1 = function() {
+  // Regex is modified from the split device regex in the node.js path module.
+  return /^([a-zA-Z]:|[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/]+)?([\\\/])?/;
+};
+
+/*!
+ * path-root <https://github.com/jonschlinkert/path-root>
+ *
+ * Copyright (c) 2016, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+var pathRootRegex = pathRootRegex$1;
+
+var pathRoot$1 = function(filepath) {
+  if (typeof filepath !== 'string') {
+    throw new TypeError('expected a string');
+  }
+
+  var match = pathRootRegex().exec(filepath);
+  if (match) {
+    return match[0];
+  }
+};
+
+var rethrowUnlessCode$1 = {};
+
+Object.defineProperty(rethrowUnlessCode$1, "__esModule", { value: true });
+function rethrowUnlessCode(maybeError, ...codes) {
+    if (maybeError !== null && typeof maybeError === 'object') {
+        const code = maybeError.code;
+        for (const allowed of codes) {
+            if (code === allowed) {
+                return;
+            }
+        }
+    }
+    throw maybeError;
+}
+rethrowUnlessCode$1.default = rethrowUnlessCode;
+
+function includes(array, entry) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === entry) {
+            return true;
+        }
+    }
+    return false;
+}
+var shouldPreserveSymlinks$1 = function (process) {
+    return !!process.env.NODE_PRESERVE_SYMLINKS || includes(process.execArgv, '--preserve-symlinks');
+};
+
+var __importDefault$1 = (commonjsGlobal && commonjsGlobal.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+// credit goes to https://github.com/davecombs
+// extracted in part from: https://github.com/stefanpenner/hash-for-dep/blob/15b2ebcf22024ceb2eb7907f8c412ae40f87b15e/lib/resolve-package-path.js#L1
+//
+const fs = require$$0$1;
+const path = require$$0$a;
+const pathRoot = pathRoot$1;
+const rethrow_unless_code_1$1 = __importDefault$1(rethrowUnlessCode$1);
+/*
+ * Define a regex that will match against the 'name' value passed into
+ * resolvePackagePath. The regex corresponds to the following test:
+ *   Match any of the following 3 alternatives:
+ *
+ *  1) dot, then optional second dot, then / or nothing    i.e.  .  ./  ..  ../        OR
+ *  2) /                                                   i.e.  /                     OR
+ *  3) (A-Za-z colon - [optional]), then / or \            i.e. optional drive letter + colon, then / or \
+ *
+ * Basically, the three choices mean "explicitly relative or absolute path, on either
+ * Unix/Linux or Windows"
+ */
+const ABSOLUTE_OR_RELATIVE_PATH_REGEX = /^(?:\.\.?(?:\/|$)|\/|([A-Za-z]:)?[/\\])/;
+const shouldPreserveSymlinks = shouldPreserveSymlinks$1;
+const PRESERVE_SYMLINKS = shouldPreserveSymlinks(process);
+/*
+ * Resolve the real path for a file. Return null if does not
+ * exist or is not a file or FIFO, return the real path otherwise.
+ *
+ * Cache the result in the passed-in cache for performance,
+ * keyed on the filePath passed in.
+ *
+ * NOTE: Because this is a private method, it does not attempt to normalize
+ * the path passed in - it assumes the caller has done that.
+ *
+ * @private
+ * @method _getRealFilePath
+ * @param {Cache} realFilePathCache the Cache object to cache the real (resolved)
+ * path in, keyed by filePath. See lib/cache.js and lib/cache-group.js
+ * @param {String} filePath the path to the file of interest (which must have
+ * been normalized, but not necessarily resolved to a real path).
+ * @return {String} real path or null
+ */
+function _getRealFilePath(realFilePathCache, filePath) {
+    if (realFilePathCache.has(filePath)) {
+        return realFilePathCache.get(filePath); // could be null
+    }
+    let realPath = null; // null = 'FILE NOT FOUND'
+    try {
+        const stat = fs.statSync(filePath);
+        // I don't know if Node would handle having the filePath actually
+        // be a FIFO, but as the following is also part of the node-resolution
+        // algorithm in resolve.sync(), we'll do the same check here.
+        if (stat.isFile() || stat.isFIFO()) {
+            if (PRESERVE_SYMLINKS) {
+                realPath = filePath;
+            }
+            else {
+                realPath = fs.realpathSync(filePath);
+            }
+        }
+    }
+    catch (e) {
+        (0, rethrow_unless_code_1$1.default)(e, 'ENOENT');
+    }
+    realFilePathCache.set(filePath, realPath);
+    return realPath;
+}
+/*
+ * Resolve the real path for a directory, return null if does not
+ * exist or is not a directory, return the real path otherwise.
+ *
+ * @param {Cache} realDirectoryPathCache the Cache object to cache the real (resolved)
+ * path in, keyed by directoryPath. See lib/cache.js and lib/cache-group.js
+ * @param {String} directoryPath the path to the directory of interest (which must have
+ * been normalized, but not necessarily resolved to a real path).
+ * @return {String} real path or null
+ */
+function _getRealDirectoryPath(realDirectoryPathCache, directoryPath) {
+    if (realDirectoryPathCache.has(directoryPath)) {
+        return realDirectoryPathCache.get(directoryPath); // could be null
+    }
+    let realPath = null;
+    try {
+        const stat = fs.statSync(directoryPath);
+        if (stat.isDirectory()) {
+            if (PRESERVE_SYMLINKS) {
+                realPath = directoryPath;
+            }
+            else {
+                realPath = fs.realpathSync(directoryPath);
+            }
+        }
+    }
+    catch (e) {
+        (0, rethrow_unless_code_1$1.default)(e, 'ENOENT', 'ENOTDIR');
+    }
+    realDirectoryPathCache.set(directoryPath, realPath);
+    return realPath;
+}
+/*
+ * Given a package 'name' and starting directory, resolve to a real (existing) file path.
+ *
+ * Do it similar to how it is done in resolve.sync() - travel up the directory hierarchy,
+ * attaching 'node-modules' to each directory and seeing if the directory exists and
+ * has the relevant 'package.json' file we're searching for. It is *much* faster than
+ * resolve.sync(), because we don't test that the requested name is a directory.
+ * This routine assumes that it is only called when we don't already have
+ * the cached entry.
+ *
+ * NOTE: it is valid for 'name' to be an absolute or relative path.
+ * Because this is an internal routine, we'll require that 'dir' be non-empty
+ * if this is called, to make things simpler (see resolvePackagePath).
+ *
+ * @param realFilePathCache the cache containing the real paths corresponding to
+ *   various file and directory paths (which may or may not be already resolved).
+ *
+ * @param name the 'name' of the module, i.e. x in require(x), but with
+ *   '/package.json' on the end. It is NOT referring to a directory (so we don't
+ *   have to do the directory checks that resolve.sync does).
+ *   NOTE: because this is an internal routine, for speed it does not check
+ *   that '/package.json' is actually the end of the name.
+ *
+ * @param dir the directory (MUST BE non-empty, and valid) to start from, appending the name to the
+ *   directory and checking that the file exists. Go up the directory hierarchy from there.
+ *   if name is itself an absolute path,
+ *
+ * @result the path to the actual package.json file that's found, or null if not.
+ */
+function _findPackagePath(realFilePathCache, name, dir) {
+    const fsRoot = pathRoot(dir);
+    let currPath = dir;
+    while (currPath !== fsRoot) {
+        // when testing for 'node_modules', need to allow names like NODE_MODULES,
+        // which can occur with case-insensitive OSes.
+        let endsWithNodeModules = path.basename(currPath).toLowerCase() === 'node_modules';
+        let filePath = path.join(currPath, endsWithNodeModules ? '' : 'node_modules', name);
+        let realPath = _getRealFilePath(realFilePathCache, filePath);
+        if (realPath) {
+            return realPath;
+        }
+        if (endsWithNodeModules) {
+            // go up past the ending node_modules directory so the next dirname
+            // goes up past that (if ending in node_modules, going up just one
+            // directory below will then add 'node_modules' on the next loop and
+            // re-process this same node_modules directory.
+            currPath = path.dirname(currPath);
+        }
+        currPath = path.dirname(currPath);
+    }
+    return null;
+}
+/*
+ * Resolve the path to the nearest `package.json` from the given initial search
+ * directory.
+ *
+ * @param  {Cache} findUpCache - a cache of memoized results that is
+ * prioritized to avoid I/O.
+ *
+ * @param {string} initialSearchDir - the normalized path to start searching
+ * from.
+ *
+ * @return {string | null} - the deepest directory on the path to root from
+ * `initialSearchDir` that contains a {{package.json}}, or `null` if no such
+ * directory exists.
+ */
+function _findUpPackagePath$1(findUpCache, initialSearchDir) {
+    let previous;
+    let dir = initialSearchDir;
+    let maybePackageJsonPath;
+    let result = null;
+    do {
+        if (findUpCache.has(dir)) {
+            result = findUpCache.get(dir);
+            break;
+        }
+        maybePackageJsonPath = path.join(dir, 'package.json');
+        if (fs.existsSync(maybePackageJsonPath)) {
+            result = maybePackageJsonPath;
+            break;
+        }
+        previous = dir;
+        dir = path.dirname(dir);
+    } while (dir !== previous);
+    findUpCache.set(initialSearchDir, result);
+    return result;
+}
+/*
+ * Resolve the path to a module's package.json file, if it exists. The
+ * name and dir are as in hashForDep and ModuleEntry.locate.
+ *
+ *  @param caches an instance of CacheGroup where information will be cached
+ *  during processing.
+ *
+ *  @param name the 'name' of the module.  The name may also be a path,
+ *  either relative or absolute. The path must be to a module DIRECTORY, NOT to the
+ *  package.json file in the directory, as we attach 'package.json' here.
+ *
+ *  @param dir (optional) the root directory to run the path resolution from.
+ *  if dir is not provided, __dirname for this module is used instead.
+ *
+ *  @return the realPath corresponding to the module's package.json file, or null
+ *  if that file is not found or is not a file.
+ *
+ * Note: 'name' is expected in the format expected for require(x), i.e., it is
+ * resolved using the Node path-normalization rules.
+ */
+function resolvePackagePath$1(caches, name, dir) {
+    if (typeof name !== 'string' || name.length === 0) {
+        throw new TypeError("resolvePackagePath: 'name' must be a non-zero-length string.");
+    }
+    // Perform tests similar to those in resolve.sync().
+    let basedir = dir || __dirname;
+    // Ensure that basedir is an absolute path at this point. If it does not refer to
+    // a real directory, go up the path until a real directory is found, or return an error.
+    // BUG!: this will never throw an exception, at least on Unix/Linux. If the path is
+    // relative, path.resolve() will make it absolute by putting the current directory
+    // before it, so it won't fail. If the path is already absolute, / will always be
+    // valid, so again it won't fail.
+    let absoluteStart = path.resolve(basedir);
+    while (_getRealDirectoryPath(caches.REAL_DIRECTORY_PATH, absoluteStart) === null) {
+        absoluteStart = path.dirname(absoluteStart);
+    }
+    if (!absoluteStart) {
+        let error = new TypeError("resolvePackagePath: 'dir' or one of the parent directories in its path must refer to a valid directory.");
+        error.code = 'MODULE_NOT_FOUND';
+        throw error;
+    }
+    if (ABSOLUTE_OR_RELATIVE_PATH_REGEX.test(name)) {
+        let res = path.resolve(absoluteStart, name);
+        return _getRealFilePath(caches.REAL_FILE_PATH, path.join(res, 'package.json'));
+        // XXX Do we need to handle the core(x) case too? Not sure.
+    }
+    else {
+        return _findPackagePath(caches.REAL_FILE_PATH, path.join(name, 'package.json'), absoluteStart);
+    }
+}
+resolvePackagePath$1._findPackagePath = _findPackagePath;
+resolvePackagePath$1._findUpPackagePath = _findUpPackagePath$1;
+resolvePackagePath$1._getRealFilePath = _getRealFilePath;
+resolvePackagePath$1._getRealDirectoryPath = _getRealDirectoryPath;
+var resolvePackagePath_1 = resolvePackagePath$1;
+
+function makeCache() {
+    // object with no prototype
+    const cache = Object.create(null);
+    // force the jit to immediately realize this object is a dictionary. This
+    // should prevent the JIT from going wastefully one direction (fast mode)
+    // then going another (dict mode) after
+    cache['_cache'] = 1;
+    delete cache['_cache'];
+    return cache;
+}
+var cache = class Cache {
+    constructor() {
+        this._store = makeCache();
+    }
+    set(key, value) {
+        return (this._store[key] = value);
+    }
+    get(key) {
+        return this._store[key];
+    }
+    has(key) {
+        return key in this._store;
+    }
+    delete(key) {
+        delete this._store[key];
+    }
+    get size() {
+        return Object.keys(this._store).length;
+    }
+};
+
+const Cache$1 = cache;
+var cacheGroup = class CacheGroup {
+    constructor() {
+        this.MODULE_ENTRY = new Cache$1();
+        this.PATH = new Cache$1();
+        this.REAL_FILE_PATH = new Cache$1();
+        this.REAL_DIRECTORY_PATH = new Cache$1();
+        Object.freeze(this);
+    }
+};
+
+var __importDefault = (commonjsGlobal && commonjsGlobal.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const path_1 = __importDefault(require$$0$a);
+const resolve_package_path_1 = __importDefault(resolvePackagePath_1);
+const rethrow_unless_code_1 = __importDefault(rethrowUnlessCode$1);
+const ALLOWED_ERROR_CODES = [
+    // resolve package error codes
+    'MODULE_NOT_FOUND',
+    // Yarn PnP Error Codes
+    'UNDECLARED_DEPENDENCY',
+    'MISSING_PEER_DEPENDENCY',
+    'MISSING_DEPENDENCY'
+];
+const CacheGroup = cacheGroup;
+const Cache = cache;
+const getRealFilePath = resolve_package_path_1.default._getRealFilePath;
+const getRealDirectoryPath = resolve_package_path_1.default._getRealDirectoryPath;
+const __findUpPackagePath = resolve_package_path_1.default._findUpPackagePath;
+let CACHE = new CacheGroup();
+let FIND_UP_CACHE = new Cache();
+let pnp;
+try {
+    // eslint-disable-next-line node/no-missing-require
+    pnp = require$1('pnpapi');
+}
+catch (error) {
+    // not in Yarn PnP; not a problem
+}
+/**
+ * Search each directory in the absolute path `baseDir`, from leaf to root, for
+ * a `package.json`, and return the first match, or `null` if no `package.json`
+ * was found.
+ *
+ * @public
+ * @param {string} baseDir - an absolute path in which to search for a `package.json`
+ * @param {CacheGroup|boolean} [_cache] (optional)
+ *  * if true: will choose the default global cache
+ *  * if false: will not cache
+ *  * if undefined or omitted, will choose the default global cache
+ *  * otherwise we assume the argument is an external cache of the form provided by resolve-package-path/lib/cache-group.js
+ *
+ * @return {string|null} a full path to the resolved package.json if found or null if not
+ */
+function _findUpPackagePath(baseDir, _cache) {
+    let cache;
+    if (_cache === undefined || _cache === null || _cache === true) {
+        // if no cache specified, or if cache is true then use the global cache
+        cache = FIND_UP_CACHE;
+    }
+    else if (_cache === false) {
+        // if cache is explicity false, create a throw-away cache;
+        cache = new Cache();
+    }
+    else {
+        // otherwise, assume the user has provided an alternative cache for the following form:
+        // provided by resolve-package-path/lib/cache-group.js
+        cache = _cache;
+    }
+    let absoluteStart = path_1.default.resolve(baseDir);
+    return __findUpPackagePath(cache, absoluteStart);
+}
+function resolvePackagePath(target, baseDir, _cache) {
+    let cache;
+    if (_cache === undefined || _cache === null || _cache === true) {
+        // if no cache specified, or if cache is true then use the global cache
+        cache = CACHE;
+    }
+    else if (_cache === false) {
+        // if cache is explicity false, create a throw-away cache;
+        cache = new CacheGroup();
+    }
+    else {
+        // otherwise, assume the user has provided an alternative cache for the following form:
+        // provided by resolve-package-path/lib/cache-group.js
+        cache = _cache;
+    }
+    if (baseDir.charAt(baseDir.length - 1) !== path_1.default.sep) {
+        baseDir = `${baseDir}${path_1.default.sep}`;
+    }
+    const key = target + '\x00' + baseDir;
+    let pkgPath;
+    if (cache.PATH.has(key)) {
+        pkgPath = cache.PATH.get(key);
+    }
+    else {
+        try {
+            // the custom `pnp` code here can be removed when yarn 1.13 is the
+            // current release. This is due to Yarn 1.13 and resolve interoperating
+            // together seamlessly.
+            pkgPath = pnp
+                ? pnp.resolveToUnqualified(target + '/package.json', baseDir)
+                : (0, resolve_package_path_1.default)(cache, target, baseDir);
+        }
+        catch (e) {
+            (0, rethrow_unless_code_1.default)(e, ...ALLOWED_ERROR_CODES);
+            pkgPath = null;
+        }
+        cache.PATH.set(key, pkgPath);
+    }
+    return pkgPath;
+}
+resolvePackagePath._resetCache = function () {
+    CACHE = new CacheGroup();
+    FIND_UP_CACHE = new Cache();
+};
+// eslint-disable-next-line no-redeclare
+(function (resolvePackagePath) {
+    resolvePackagePath._FIND_UP_CACHE = FIND_UP_CACHE;
+    resolvePackagePath.findUpPackagePath = _findUpPackagePath;
+})(resolvePackagePath || (resolvePackagePath = {}));
+Object.defineProperty(resolvePackagePath, '_CACHE', {
+    get: function () {
+        return CACHE;
+    },
+});
+Object.defineProperty(resolvePackagePath, '_FIND_UP_CACHE', {
+    get: function () {
+        return FIND_UP_CACHE;
+    },
+});
+resolvePackagePath.getRealFilePath = function (filePath) {
+    return getRealFilePath(CACHE.REAL_FILE_PATH, filePath);
+};
+resolvePackagePath.getRealDirectoryPath = function (directoryPath) {
+    return getRealDirectoryPath(CACHE.REAL_DIRECTORY_PATH, directoryPath);
+};
+var lib = resolvePackagePath;
+
+
+var resolve = /*@__PURE__*/getDefaultExportFromCjs(lib);
 
 async function run() {
   try {
